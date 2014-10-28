@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<package>
+  <name>p3dx_launch</name>
+  <version>0.0.0</version>
+  <description>The p3dx_launch package</description>
+
+  <maintainer email="lab1_5@todo.todo">lab1_5</maintainer>
+
+
+  <license>GNU GPLv2</license>
+
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>tf</build_depend>
+  <run_depend>tf</run_depend>
+  <run_depend>roscpp</run_depend>
+  <run_depend>rosaria</run_depend>
+  <run_depend>amcl</run_depend>
+  <run_depend>move_base</run_depend>
+  <run_depend>map_server</run_depend>
+  <run_depend>p2os_teleop</run_depend>
+  <run_depend>hokuyo_node</run_depend>
+  <run_depend>usb_cam</run_depend>
+  <run_depeng>gmapping</run_depend>
+
+
+
+  <export>
+  </export>
+</package>

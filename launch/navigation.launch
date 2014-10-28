@@ -1,0 +1,7 @@
+<launch>
+    <node name="map_server" pkg="map_server" type="map_server -f `rospack find p3dx_launch`/nav_config/map.yaml" />
+	<include file="$(find p3dx_launch)/launch/move_base.launch" />
+	<include file="$(find amcl)/examples/amcl_diff.launch" />
+		
+
+</launch>
