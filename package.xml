@@ -22,7 +22,7 @@
   <run_depend>p2os_teleop</run_depend>
   <run_depend>hokuyo_node</run_depend>
   <run_depend>usb_cam</run_depend>
-  <run_depeng>gmapping</run_depend>
+  <run_depend>gmapping</run_depend>
 
 
 
