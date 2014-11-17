@@ -1,13 +1,14 @@
 global_costmap:
   global_frame: /map
-  robot_base_frame: base_link
-  update_frequency: 2.0
+  robot_base_frame: /base_link
+  update_frequency: 10.0
   publish_frequency: 10.0
   static_map: true
   rolling_window: false
   map_type: costmap
 
   plugins:
-    - {name: footprint_layer, type: "costmap_2d::FootprintLayer"}
-    - {name: obstacle_layer, type: "costmap_2d::ObstacleLayer"}
-    - {name: inflater_layer, type: "costmap_2d::InflationLayer"}
+    - {name: static_map, type: "costmap_2d::StaticLayer" }
+    #- {name: footprint_layer, type: "costmap_2d::FootprintLayer"}
+    #- {name: obstacle_layer, type: "costmap_2d::ObstacleLayer"}
+    #- {name: inflater_layer, type: "costmap_2d::InflationLayer"}

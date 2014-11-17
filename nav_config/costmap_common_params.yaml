@@ -5,6 +5,20 @@ footprint: [[0.254, -0.0508], [0.1778, -0.0508], [0.1778, -0.1778], [-0.1905, -0
 
 transform_tolerance: 0.2
 
-observations_sources: laser_scan_sensor
-laser_scan_sensor: {sensor_frame: /laser, data_type: LaserScan, topic: /scan, marking: true, clearing: true, expected_update_rate: 0.2}
+obstacles:
+ observations_sources: laser_scan_sensor
+ laser_scan_sensor: {sensor_frame: /laser, data_type: LaserScan, topic: /scan, marking: true, clearing: true, expected_update_rate: 0.2}
 
+
+plugins:
+ 
+ -
+  name: static_map
+  type: "costmap_2d::StaticLayer"
+ 
+ -
+  name: obstacles
+  type: "costmap_2d::ObstacleLayer"
+ -
+  name: inflater
+  type: "costmap_2d::InflationLayer"
