@@ -7,8 +7,8 @@ local_costmap:
   rolling_window: true
   width: 5.0
   height: 5.0
-  resolution: 0.025
+  resolution: 0.02
   plugins:
     #- {name: footprint_layer, type: "costmap_2d::FootprintLayer"}
-    - {name: obstacle_layer, type: "costmap_2d::ObstacleLayer"}
-    - {name: inflater_layer, type: "costmap_2d::InflationLayer"}
+    - {name: obstacles, type: "costmap_2d::ObstacleLayer"}
+    - {name: inflater, type: "costmap_2d::InflationLayer"}

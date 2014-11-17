@@ -15,7 +15,7 @@ int main(int argc, char** argv){
 			ros::Time::now(), "base_link", "laser"));
 		
 		bc.sendTransform(tf::StampedTransform(tf::Transform(tf::Quaternion(0,0,0,1), tf::Vector3(0.15,0.0,0.06)),
-			ros::Time::now(), "base_link", "rosaria/sonar"));
+			ros::Time::now(), "base_link", "sonar_frame"));
 		r.sleep();
 	}
 
