@@ -3,51 +3,47 @@ p3dx_launch
 
 ROS package for P3DX robots used on Wroclaw University of Technology
 equipped with Hokuyo laser ranger
-
-Paczka ROS-a umożliwiająca autonomiczną nawigację robota Pioneer3DX, wyposażonego w skaner laserowy Hokuyo.
-
-## Instalacja
-Należy sklonować zawartość repozytorium do podkatologu src w catkin workspace http://wiki.ros.org/catkin/Tutorials/create_a_workspace
-następnie należy paczkę zbudować:
+## Instalation
+Clone the repository to the src subdirectory of your catkin workspace:
+[http://wiki.ros.org/catkin/Tutorials/create_a_workspace]
+and build it with catkin_make:
 <pre>
-/home/lab1_5/catkin_ws$ catkin_make
+lab1_5@P3-DX-4322:~$ catkin_make
 </pre>
+To ensure that new package can be found by ROS source the setup.bash file from the devel subdirectory of your catkin workspace.
 
-Instalacje niezbędnych paczek ROS-a jest możliwa z wykorzystaniem narzędzia rosdep:
+To install all ROS dependencies for the p3dx_launch package proceed with:
 <pre>
 rosdep install p3dx_launch
 </pre>
 
-## Uruchomienie
+## Running 
 
-### Konfiguracja sieciowa
-Zakładając, że wizualizacja będzie uruchomiona na innym komputerze niż komputer pokładowy robota
-należy odpowiednio skonfigurować ustawienia sieciowe ROS-a.
+### ROS network configuration
+Assuming that the visualisation is run on other computer than the one on P3DX it is necessary to 
+configure the ROS enviroment properly.
+Commands on the robot can be executed directly or via SSH.
 
-Polecenia na robocie można uruchamiać bezpośrednio lub przez SSH.
-
-Na robocie:
+1. On the robot:
 <pre>
-export ROS_IP=adres_ip_robota
-export ROS_MASTER_URI=http://adres_ip_robota:11311
+lab1_5@P3-DX-4322:~$ export ROS_IP=adres_ip_robota
+lab1_5@P3-DX-4322:~$ export ROS_MASTER_URI=http://adres_ip_robota:11311
 </pre>
-Na komputerze zewnętrznym:
+2. On the external computer:
 <pre>
-export ROS_IP=adres_ip_komputera
-export ROS_MASTER_URI=http://adres_ip_robota:11311
+student@lab15:~$ export ROS_IP=adres_ip_komputera
+student@lab15:~$ export ROS_MASTER_URI=http://adres_ip_robota:11311
 </pre>
 
-### Incjalizacja
-W pierwszej kolejności należy uruchomić na robocie oprogramowanie ROSARIA i obsługę lasera hokuyo
+### Initialisation
+First, the ROSARIA software and a hokuyo ranger driver have to be run:
 <pre>
-roslaunch p3dx_launch p3dx.launch
+lab1_5@P3-DX-4322:~$ roslaunch p3dx_launch p3dx.launch
 </pre>
-Jeśli konfiguracja sieciowa została przeprowadzona poprawnie po wywołaniu polecenia
+If the network configuration is correct the same topics should be available on both machines:
 <pre>
 rostopic list
 </pre>
-na komputerze robota i zewnętrznym powinny być widoczne te same topic
-, m.in.:
 <pre>
 /diagnostics
 /hokuyo_node/parameter_descriptions
@@ -69,52 +65,52 @@ na komputerze robota i zewnętrznym powinny być widoczne te same topic
 </pre>
 
 
-### sterowanie robota padem
-Na robocie lub komputerze do wizualizacji:
+### Driving the robot with a pad controller
+The command should be run on the computer with a controller connected:
 <pre>
 roslaunch p3dx.launch teleop_joy.launch
 </pre>
 
-### Mapowanie
-Aby stworzyć mapę pomieszczenia należy na robocie uruchomić:
+### Mapping
+To make a static map of an robot's enviroment run:
 <pre>
-roslaunch p3dx_launch mapping.launch
+lab1_5@P3-DX-4322:~$ roslaunch p3dx_launch mapping.launch
 </pre>
-Efekty mapowania można podjerzeć w programie RViz:
+To see the results of mapping open RViz:
 <pre>
-rosrun rviz rviz
+student@lab15:~$ rosrun rviz rviz
 </pre>
-i wybraniu pliku konfiguracyjnego map.rviz
-Po utworzeniu mapy należy wywołać polecenie:
+and select map.rviz configuration file in File/Open Config dialog. 
+
+Drive the robot around with a pad controller and when the results will be satisfactory
+save a map with:
 <pre>
-rosrun map_server map_saver
+lab1_5@P3-DX-4322:~$ rosrun map_server map_saver
 </pre>
 
-### Autonomiczna nawigacja
-Uruchomienie pakietu nawigacji (na robocie):
+### Autonymous navigation
+On the robot run configured ROS navigation stack with:
 <pre>
-roslaunch p3dx_launch navigation.launch
+lab1_5@P3-DX-4322:~$ roslaunch p3dx_launch navigation.launch
 </pre>
-Działanie nawigacji jest możliwe po otwarciu pliku nav.rviz w programie RViz.
-W pierwszej kolejności należy oznaczyć na mapie pozycję startową robota.
-Dokładny opis wykorzystania RViz-a do nawigowania robota można znaleźć na stronie
+Open RViz with nav.rviz config file.
+Now you can set an initial pose of the robot and send navigation goals to the robot with RViz.
+More detailed instruction on using RViz for navigation with ROS is available on:
 [http://wiki.ros.org/navigation/Tutorials/Using%20rviz%20with%20the%20Navigation%20Stack]
 
-
-
-## Konfiguracja
-Konfiguracja działania autonomicznej jest zawarta w plikach:
+## Adjusting configuration
+Configutation of the ROS navigation stack is placed in the following files:
 base_local_planner_params.yaml	
 costmap_common_params.yaml
 global_costmap_params.yaml 
 local_costmap_params.yaml
-Większość z tych parametrów można zmieniać dynamicznie podczas testowania systemu
-z wykorzystaniem narzędzia rqt_reconfigure
+Most of parameters from these files can be dynamically adjusted with rqt_reconfigure tool:
+<pre>
+student@lab15:~$ rosrun rqt_reconfigure rqt_reconfigure
+</pre>
 
 
 
-
-W przypadku wykorzystania innego kontrolera niż Logitech Gamepad F710 prawdopodobnie będzie 
-wymagane dostosowanie parametrów w pliku teleop_joy.launch.
+In case of using other pad controller than Logitech Gamepad F710 it is likely that adjusting parameters teleop_joy.launch is necessary.
 
 
