@@ -1,6 +1,13 @@
 <launch>
+
+<!--
+uruchomienie map_server'a. w przypadku wykorzystania innej mapy nalezy zmienic jej sciezke w args
+-->
     <node name="map_server" pkg="map_server" type="map_server" args="$(find p3dx_launch)/nav_config/map.yaml" />
+<!-- uruchomienie move_base.launch -->
 	<include file="$(find p3dx_launch)/launch/move_base.launch" />
+
+<!-- uruchomienie paczki AMCL z konfiguracja domyslna dla monocykla -->
 	<include file="$(find amcl)/examples/amcl_diff.launch" />
 		
 
