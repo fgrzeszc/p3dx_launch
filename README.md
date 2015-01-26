@@ -28,19 +28,19 @@ Polecenia na robocie można uruchamiać bezpośrednio lub przez SSH.
 
 Na robocie:
 <pre>
-export ROS_IP=adres_ip_robota
-export ROS_MASTER_URI=http://adres_ip_robota:11311
+lab1_5@P3-DX-4322:~$ export ROS_IP=adres_ip_robota
+lab1_5@P3-DX-4322:~$ export ROS_MASTER_URI=http://adres_ip_robota:11311
 </pre>
 Na komputerze zewnętrznym:
 <pre>
-export ROS_IP=adres_ip_komputera
-export ROS_MASTER_URI=http://adres_ip_robota:11311
+student@lab15:~$ export ROS_IP=adres_ip_komputera
+student@lab15:~$ export ROS_MASTER_URI=http://adres_ip_robota:11311
 </pre>
 
 ### Incjalizacja
 W pierwszej kolejności należy uruchomić na robocie oprogramowanie ROSARIA i obsługę lasera hokuyo
 <pre>
-roslaunch p3dx_launch p3dx.launch
+lab1_5@P3-DX-4322:~$ roslaunch p3dx_launch p3dx.launch
 </pre>
 Jeśli konfiguracja sieciowa została przeprowadzona poprawnie po wywołaniu polecenia
 <pre>
@@ -78,22 +78,22 @@ roslaunch p3dx.launch teleop_joy.launch
 ### Mapowanie
 Aby stworzyć mapę pomieszczenia należy na robocie uruchomić:
 <pre>
-roslaunch p3dx_launch mapping.launch
+lab1_5@P3-DX-4322:~$ roslaunch p3dx_launch mapping.launch
 </pre>
 Efekty mapowania można podjerzeć w programie RViz:
 <pre>
-rosrun rviz rviz
+student@lab15:~$ rosrun rviz rviz
 </pre>
 i wybraniu pliku konfiguracyjnego map.rviz
 Po utworzeniu mapy należy wywołać polecenie:
 <pre>
-rosrun map_server map_saver
+lab1_5@P3-DX-4322:~$ rosrun map_server map_saver
 </pre>
 
 ### Autonomiczna nawigacja
 Uruchomienie pakietu nawigacji (na robocie):
 <pre>
-roslaunch p3dx_launch navigation.launch
+lab1_5@P3-DX-4322:~$ roslaunch p3dx_launch navigation.launch
 </pre>
 Działanie nawigacji jest możliwe po otwarciu pliku nav.rviz w programie RViz.
 W pierwszej kolejności należy oznaczyć na mapie pozycję startową robota.
