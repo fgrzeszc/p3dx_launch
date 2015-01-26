@@ -18,3 +18,103 @@ Instalacje niezbędnych paczek ROS-a jest możliwa z wykorzystaniem narzędzia r
 rosdep install p3dx_launch
 </pre>
 
+## Uruchomienie
+
+### Konfiguracja sieciowa
+Zakładając, że wizualizacja będzie uruchomiona na innym komputerze niż komputer pokładowy robota
+należy odpowiednio skonfigurować ustawienia sieciowe ROS-a.
+
+Polecenia na robocie można uruchamiać bezpośrednio lub przez SSH.
+
+Na robocie:
+<pre>
+export ROS_IP=adres_ip_robota
+export ROS_MASTER_URI=http://adres_ip_robota:11311
+</pre>
+Na komputerze zewnętrznym:
+<pre>
+export ROS_IP=adres_ip_komputera
+export ROS_MASTER_URI=http://adres_ip_robota:11311
+</pre>
+
+### Incjalizacja
+W pierwszej kolejności należy uruchomić na robocie oprogramowanie ROSARIA i obsługę lasera hokuyo
+<pre>
+roslaunch p3dx_launch p3dx.launch
+</pre>
+Jeśli konfiguracja sieciowa została przeprowadzona poprawnie po wywołaniu polecenia
+<pre>
+rostopic list
+</pre>
+na komputerze robota i zewnętrznym powinny być widoczne te same topic
+, m.in.:
+<pre>
+/diagnostics
+/hokuyo_node/parameter_descriptions
+/hokuyo_node/parameter_updates
+/rosaria/battery_recharge_state
+/rosaria/battery_state_of_charge
+/rosaria/battery_voltage
+/rosaria/bumper_state
+/rosaria/cmd_vel
+/rosaria/motors_state
+/rosaria/parameter_descriptions
+/rosaria/parameter_updates
+/rosaria/pose
+/rosaria/sonar
+/rosout
+/rosout_agg
+/scan
+/tf
+</pre>
+
+
+### sterowanie robota padem
+Na robocie lub komputerze do wizualizacji:
+<pre>
+roslaunch p3dx.launch teleop_joy.launch
+</pre>
+
+### Mapowanie
+Aby stworzyć mapę pomieszczenia należy na robocie uruchomić:
+<pre>
+roslaunch p3dx_launch mapping.launch
+</pre>
+Efekty mapowania można podjerzeć w programie RViz:
+<pre>
+rosrun rviz rviz
+</pre>
+i wybraniu pliku konfiguracyjnego map.rviz
+Po utworzeniu mapy należy wywołać polecenie:
+<pre>
+rosrun map_server map_saver
+</pre>
+
+### Autonomiczna nawigacja
+Uruchomienie pakietu nawigacji (na robocie):
+<pre>
+roslaunch p3dx_launch navigation.launch
+</pre>
+Działanie nawigacji jest możliwe po otwarciu pliku nav.rviz w programie RViz.
+W pierwszej kolejności należy oznaczyć na mapie pozycję startową robota.
+Dokładny opis wykorzystania RViz-a do nawigowania robota można znaleźć na stronie
+[http://wiki.ros.org/navigation/Tutorials/Using%20rviz%20with%20the%20Navigation%20Stack]
+
+
+
+## Konfiguracja
+Konfiguracja działania autonomicznej jest zawarta w plikach:
+base_local_planner_params.yaml	
+costmap_common_params.yaml
+global_costmap_params.yaml 
+local_costmap_params.yaml
+Większość z tych parametrów można zmieniać dynamicznie podczas testowania systemu
+z wykorzystaniem narzędzia rqt_reconfigure
+
+
+
+
+W przypadku wykorzystania innego kontrolera niż Logitech Gamepad F710 prawdopodobnie będzie 
+wymagane dostosowanie parametrów w pliku teleop_joy.launch.
+
+
