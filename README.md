@@ -81,6 +81,7 @@ To see the results of mapping open RViz:
 student@lab15:~$ rosrun rviz rviz
 </pre>
 and select map.rviz configuration file in File/Open Config dialog. 
+![alt tag](http://diablo.ict.pwr.wroc.pl/~fgrzeszc/p3dx_launch/mapping.png)
 
 Drive the robot around with a pad controller and when the results will be satisfactory
 save a map with:
@@ -97,6 +98,7 @@ Open RViz with nav.rviz config file.
 Now you can set an initial pose of the robot and send navigation goals to the robot with RViz.
 More detailed instruction on using RViz for navigation with ROS is available on:
 [http://wiki.ros.org/navigation/Tutorials/Using%20rviz%20with%20the%20Navigation%20Stack]
+![alt tag](http://diablo.ict.pwr.wroc.pl/~fgrzeszc/p3dx_launch/nav.png)
 
 ## Adjusting configuration
 Configutation of the ROS navigation stack is placed in the following files:
@@ -108,6 +110,8 @@ Most of parameters from these files can be dynamically adjusted with rqt_reconfi
 <pre>
 student@lab15:~$ rosrun rqt_reconfigure rqt_reconfigure
 </pre>
+![alt tag](http://diablo.ict.pwr.wroc.pl/~fgrzeszc/p3dx_launch/reconfigure.png)
+
 
 
 
