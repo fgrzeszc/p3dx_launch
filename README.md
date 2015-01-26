@@ -93,8 +93,9 @@ On the robot run configured ROS navigation stack with:
 <pre>
 lab1_5@P3-DX-4322:~$ roslaunch p3dx_launch navigation.launch
 </pre>
-Now you can set an initial pose of the robota and send navigation goals with RViz.
-More detailed instruction on using RViz for navigation with ROS is available on
+Open RViz with nav.rviz config file.
+Now you can set an initial pose of the robot and send navigation goals to the robot with RViz.
+More detailed instruction on using RViz for navigation with ROS is available on:
 [http://wiki.ros.org/navigation/Tutorials/Using%20rviz%20with%20the%20Navigation%20Stack]
 
 ## Adjusting configuration
@@ -107,6 +108,8 @@ Most of parameters from these files can be dynamically adjusted with rqt_reconfi
 <pre>
 student@lab15:~$ rosrun rqt_reconfigure rqt_reconfigure
 </pre>
+
+
 
 In case of using other pad controller than Logitech Gamepad F710 it is likely that adjusting parameters teleop_joy.launch is necessary.
 
