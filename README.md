@@ -70,6 +70,8 @@ The command should be run on the computer with a controller connected:
 <pre>
 roslaunch p3dx.launch teleop_joy.launch
 </pre>
+In case of using other pad controller than Logitech Gamepad F710 it is likely that adjusting parameters teleop_joy.launch is necessary.
+
 
 ### Mapping
 To make a static map of an robot's enviroment run:
@@ -112,9 +114,5 @@ student@lab15:~$ rosrun rqt_reconfigure rqt_reconfigure
 </pre>
 ![alt tag](http://diablo.ict.pwr.wroc.pl/~fgrzeszc/p3dx_launch/reconfigure.png)
 
-
-
-
-In case of using other pad controller than Logitech Gamepad F710 it is likely that adjusting parameters teleop_joy.launch is necessary.
 
 
