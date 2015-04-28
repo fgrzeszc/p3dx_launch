@@ -7,18 +7,7 @@ transform_tolerance: 0.2
 
 obstacles:
   observation_sources: laser_scan_sensor point_cloud_sensor
-  laser_scan_sensor: {sensor_frame: /laser, data_type: LaserScan, topic: /scan, marking: true, clearing: true, expected_update_rate: 0.2}
+  laser_scan_sensor: {sensor_frame: /laser, data_type: LaserScan, topic: /scan, marking: true, clearing: true, expected_update_rate: 0.2, inf_is_valid: true}
   point_cloud_sensor: {sensor_frame: /sonar_frame, date_type: PointCloud, topic: /rosaria/sonar, marking: true, clearing: true}
 
 
-plugins:
- -
-  name: static_map
-  type: "costmap_2d::StaticLayer"
- 
- -
-  name: obstacles
-  type: "costmap_2d::ObstacleLayer"
- -
-  name: inflater
-  type: "costmap_2d::InflationLayer"
