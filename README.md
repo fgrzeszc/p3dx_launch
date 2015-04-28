@@ -115,4 +115,6 @@ student@lab15:~$ rosrun rqt_reconfigure rqt_reconfigure
 ![alt tag](http://diablo.ict.pwr.wroc.pl/~fgrzeszc/p3dx_launch/reconfigure.png)
 
 
+## Author
+Filip Grzeszczak
 
